@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'participants/new'
+
   root 'pages#home'
   
   # get 'studies/new'
   resources :studies
+
+  resources :participants
 
 
   # The priority is based upon order of creation: first created -> highest priority.
