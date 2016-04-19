@@ -3,6 +3,10 @@ class StudiesController < ApplicationController
 		@studies = Study.all
 	end
 
+	def show 
+		@study = Study.find(params[:id])
+	end
+
   def new
   	@study = Study.new
   end
@@ -17,6 +21,20 @@ class StudiesController < ApplicationController
   		render 'new'
   	end
 
+  end
+
+  def edit 
+  	@study = Study.find(params[:id])
+  end
+
+  def update
+  	@study = Study.find(params[:id])
+  	if @study.update_attributes(study_params)
+  		flash[:success] = "Study Updated"
+  		redirect_to @study
+  	else
+  		render 'edit'
+  	end
   end
 
   private
