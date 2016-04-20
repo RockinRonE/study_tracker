@@ -22,6 +22,20 @@ class SitesController < ApplicationController
   	end
   end
 
+  def edit
+  	@site = Site.find(params[:id])
+  end
+
+  def update
+  	@site = Site.find(params[:id])
+  	if @site.update_attributes(site_params)
+  		flash[:success] = "Site Updated"
+  		redirect_to @site
+  	else
+  		render 'edit'
+  	end
+  end
+
 
 
 
