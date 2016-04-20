@@ -1,1 +1,62 @@
 <li><%= @site.name %> -- <%= @site.location %> <%= link_to 'Edit Site', edit_site_path(@site) %> </li> 
+
+<% @site.studies.open.each do |open_study| %>
+	<%# create_enrollment_path(participant, site, study) %>
+<% end %>
+
+class Site < ActiveRecord::Base
+  has_and_belongs_to_many :studies
+
+
+end
+ 
+class Study < ActiveRecord::Base
+  has_and_belongs_to_many :sites
+
+  migration title, name
+  validations: uniqueness of title in scope name
+end
+
+class Participant < ActiveRecord::Base
+  has_many :enrollments
+end
+
+class Enrollment < ActiveRecord::Base
+  <!-- belongs_to :site -->
+  <!-- belongs_to :study -->
+  belongs_to :participating_site
+  belongs_to :participant
+  validates uniqueness of participant, scope [site, study]
+end
+
+class EnrollmentsController << ActionController::Base
+	def create
+		Partcipant.find(params[:participant_id]).enrollments.create! site: Site.find(params), ...
+	end
+end
+
+
+
+...
+
+validate :validates_title_and_name_of
+
+def validates_title_of
+# custom validations
+errors.add(...) if 
+end
+
+A study uniquely identified by a title and name of principal investigator
+- study model
+- migration with title and name of pricipal investgator
+- validate uniq of title and name of person
+
+and it can be in open or closed state.
+- migration for study model
+- boolean "open" default true
+- maybe a scope on the model (named scopes)
+- Study.open
+
+A site is
+
+identified by name and location.
