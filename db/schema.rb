@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420000048) do
+ActiveRecord::Schema.define(version: 20160420004438) do
 
   create_table "participants", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 20160420000048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "participating_sites", force: :cascade do |t|
+    t.integer  "study_id"
+    t.integer  "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "participating_sites", ["site_id"], name: "index_participating_sites_on_site_id"
+  add_index "participating_sites", ["study_id"], name: "index_participating_sites_on_study_id"
 
   create_table "sites", force: :cascade do |t|
     t.string   "name"
@@ -31,9 +41,12 @@ ActiveRecord::Schema.define(version: 20160420000048) do
   create_table "studies", force: :cascade do |t|
     t.string   "title"
     t.string   "investigator"
-    t.boolean  "state",        default: true
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "state",          default: true
+    t.integer  "participant_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
+
+  add_index "studies", ["participant_id"], name: "index_studies_on_participant_id"
 
 end

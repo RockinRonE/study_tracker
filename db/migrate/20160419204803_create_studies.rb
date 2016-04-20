@@ -4,6 +4,7 @@ class CreateStudies < ActiveRecord::Migration
       t.string :title
       t.string :investigator
       t.boolean :state, default: true
+      t.references :participant, index: true, foreign_key: true
 
       t.timestamps null: false
     end
