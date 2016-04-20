@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'site/new'
+
+  get 'site/index'
+
+  get 'site/show'
+
   get 'participants/new'
 
   root 'pages#home'
@@ -7,6 +13,8 @@ Rails.application.routes.draw do
   resources :studies
 
   resources :participants
+
+  resources :sites
 
 
   # The priority is based upon order of creation: first created -> highest priority.
