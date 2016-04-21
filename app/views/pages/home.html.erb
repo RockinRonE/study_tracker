@@ -1,7 +1,27 @@
 <% provide(:title, "Home") %>
 
 <h1>Study Tracker</h1>
-<p>
-  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et 
-</p>
 
+
+<div class="row">
+	<div class="col-sm-6 col-md-offset-1">
+	<h3>Participants</h3>
+	<ul>
+		<% @participants.each do |participant| %>
+			<li><%= participant.name %></li>
+		<% end %>
+		</ul>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+ 

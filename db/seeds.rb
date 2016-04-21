@@ -9,4 +9,6 @@
 	Participant.create(name: Faker::Name.name, gender: ["M", "F"].sample, dob: "2/1/00")
 
 	Study.create(title: Faker::Book.title, principal_investigator: Faker::Name.name)
+
+	Site.create(name: Faker::Address.street_name, location: Faker::Address.city)
 end

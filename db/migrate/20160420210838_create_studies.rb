@@ -3,6 +3,7 @@ class CreateStudies < ActiveRecord::Migration
     create_table :studies do |t|
     	t.string :title
     	t.string :principal_investigator
+    	t.boolean :open, default: true
 
     	t.timestamps null: false
     end

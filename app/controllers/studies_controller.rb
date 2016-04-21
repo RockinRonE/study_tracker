@@ -8,6 +8,8 @@ class StudiesController < ApplicationController
 	end
 
   def new
+    @studies = Study.all
+
   	@study = Study.new
   end
 
@@ -16,7 +18,7 @@ class StudiesController < ApplicationController
 
   	if @study.save
   		flash[:success] = "Your study has been created!"
-  		redirect_to @study
+  		redirect_to root_path
   	else
   		render 'new'
   	end
@@ -40,6 +42,6 @@ class StudiesController < ApplicationController
   private
 
   	def study_params
-  		params.require(:study).permit(:title, :investigator)
+  		params.require(:study).permit(:title, :principal_investigator)
   	end
 end

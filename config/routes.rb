@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'enrollment/new'
+
+  get 'enrollment/new'
+
   get 'site/new'
 
   get 'site/index'
@@ -9,12 +13,11 @@ Rails.application.routes.draw do
 
   root 'pages#home'
   
-  # get 'studies/new'
-  resources :studies
+  get 'studies/new'
 
-  resources :participants
+  resources :studies, :participants, :sites
 
-  resources :sites
+  resources :enrollment, only: [:new, :create]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

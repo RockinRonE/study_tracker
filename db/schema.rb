@@ -53,8 +53,9 @@ ActiveRecord::Schema.define(version: 20160420210838) do
   create_table "studies", force: :cascade do |t|
     t.string   "title"
     t.string   "principal_investigator"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.boolean  "open",                   default: true
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
 end
