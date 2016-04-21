@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420000048) do
+ActiveRecord::Schema.define(version: 20160420210838) do
+
+  create_table "enrollments", force: :cascade do |t|
+    t.integer  "site_id"
+    t.integer  "study_id"
+    t.integer  "participant_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "enrollments", ["participant_id"], name: "index_enrollments_on_participant_id"
+  add_index "enrollments", ["site_id"], name: "index_enrollments_on_site_id"
+  add_index "enrollments", ["study_id"], name: "index_enrollments_on_study_id"
 
   create_table "participants", force: :cascade do |t|
     t.string   "name"
@@ -20,6 +32,16 @@ ActiveRecord::Schema.define(version: 20160420000048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "participating_sites", force: :cascade do |t|
+    t.integer  "site_id"
+    t.integer  "study_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "participating_sites", ["site_id"], name: "index_participating_sites_on_site_id"
+  add_index "participating_sites", ["study_id"], name: "index_participating_sites_on_study_id"
 
   create_table "sites", force: :cascade do |t|
     t.string   "name"
@@ -30,10 +52,10 @@ ActiveRecord::Schema.define(version: 20160420000048) do
 
   create_table "studies", force: :cascade do |t|
     t.string   "title"
-    t.string   "investigator"
-    t.boolean  "state",        default: true
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "principal_investigator"
+    t.boolean  "open",                   default: true
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
 end

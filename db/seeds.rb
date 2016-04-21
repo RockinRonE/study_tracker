@@ -5,3 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+10.times do
+	Participant.create(name: Faker::Name.name, gender: ["M", "F"].sample, dob: "2/1/00")
+
+	Study.create(title: Faker::Book.title, principal_investigator: Faker::Name.name)
+
+	Site.create(name: Faker::Address.street_name, location: Faker::Address.city)
+end
